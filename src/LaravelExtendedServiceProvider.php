@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelExtended\LaravelExtended;
+namespace OnurSimsek\LaravelExtended;
 
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\AggregateServiceProvider;

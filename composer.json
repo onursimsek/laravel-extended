@@ -33,13 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelExtended\\LaravelExtended\\": "src/",
-            "LaravelExtended\\LaravelExtended\\Database\\Factories\\": "database/factories/"
+            "OnurSimsek\\LaravelExtended\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LaravelExtended\\LaravelExtended\\Tests\\": "tests/",
+            "OnurSimsek\\LaravelExtended\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -71,10 +70,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelExtended\\LaravelExtended\\LaravelExtendedServiceProvider"
+                "OnurSimsek\\LaravelExtended\\LaravelExtendedServiceProvider"
             ],
             "aliases": {
-                "LaravelExtended": "LaravelExtended\\LaravelExtended\\Facades\\LaravelExtended"
+                "LaravelExtended": "OnurSimsek\\LaravelExtended\\Facades\\LaravelExtended"
             }
         }
     },

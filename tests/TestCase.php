@@ -1,36 +1,21 @@
 <?php
 
-namespace LaravelExtended\LaravelExtended\Tests;
+namespace OnurSimsek\LaravelExtended\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use LaravelExtended\LaravelExtended\LaravelExtendedServiceProvider;
+use OnurSimsek\LaravelExtended\LaravelExtendedServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'LaravelExtended\\LaravelExtended\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             LaravelExtendedServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
-        config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-extended_table.php.stub';
-        $migration->up();
-        */
+        //
     }
 }
