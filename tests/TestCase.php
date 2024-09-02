@@ -3,8 +3,8 @@
 namespace LaravelExtended\LaravelExtended\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use LaravelExtended\LaravelExtended\LaravelExtendedServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
