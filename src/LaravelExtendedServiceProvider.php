@@ -5,7 +5,9 @@ namespace OnurSimsek\LaravelExtended;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\AggregateServiceProvider;
+use Illuminate\Support\Str;
 use OnurSimsek\LaravelExtended\Mixins\BuilderMixin;
+use OnurSimsek\LaravelExtended\Mixins\StrMixin;
 
 final class LaravelExtendedServiceProvider extends AggregateServiceProvider
 {
@@ -13,13 +15,14 @@ final class LaravelExtendedServiceProvider extends AggregateServiceProvider
 
     private const CONFIG_KEY = 'extended';
 
-    private const CONFIG_PATH = __DIR__.'/../config/'.self::CONFIG_FILE;
+    private const CONFIG_PATH = __DIR__ . '/../config/' . self::CONFIG_FILE;
 
     public function boot(): void
     {
         AboutCommand::add('Laravel Extended', fn () => ['Version' => '1.0.0']);
 
-        Builder::mixin(new BuilderMixin);
+        Builder::mixin(new BuilderMixin());
+        Str::mixin(new StrMixin());
 
         if ($this->app->runningInConsole()) {
             $this->publishing();

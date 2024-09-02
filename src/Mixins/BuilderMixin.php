@@ -11,6 +11,6 @@ use OnurSimsek\LaravelExtended\DatabaseQueryBuilder\ConditionalConstraints;
  */
 class BuilderMixin
 {
-    use ConditionalConstraints;
     use BoundaryConstraints;
+    use ConditionalConstraints;
 }
