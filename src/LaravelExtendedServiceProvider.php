@@ -2,8 +2,10 @@
 
 namespace OnurSimsek\LaravelExtended;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\AggregateServiceProvider;
+use OnurSimsek\LaravelExtended\Mixins\BuilderMixin;
 
 final class LaravelExtendedServiceProvider extends AggregateServiceProvider
 {
@@ -16,6 +18,8 @@ final class LaravelExtendedServiceProvider extends AggregateServiceProvider
     public function boot(): void
     {
         AboutCommand::add('Laravel Extended', fn () => ['Version' => '1.0.0']);
+
+        Builder::mixin(new BuilderMixin);
 
         if ($this->app->runningInConsole()) {
             $this->publishing();
