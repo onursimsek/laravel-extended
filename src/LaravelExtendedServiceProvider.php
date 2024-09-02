@@ -16,6 +16,10 @@ final class LaravelExtendedServiceProvider extends AggregateServiceProvider
     public function boot(): void
     {
         AboutCommand::add('Laravel Extended', fn () => ['Version' => '1.0.0']);
+
+        if ($this->app->runningInConsole()) {
+            $this->publishing();
+        }
     }
 
     public function register(): void
