@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.2|^8.3",
         "illuminate/contracts": "^10.0||^11.0"
     },
     "require-dev": {
@@ -71,10 +71,7 @@
         "laravel": {
             "providers": [
                 "OnurSimsek\\LaravelExtended\\LaravelExtendedServiceProvider"
-            ],
-            "aliases": {
-                "LaravelExtended": "OnurSimsek\\LaravelExtended\\Facades\\LaravelExtended"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

@@ -6,7 +6,9 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use OnurSimsek\LaravelExtended\Mixins\BuilderMixin;
+use OnurSimsek\LaravelExtended\Mixins\StringableMixin;
 use OnurSimsek\LaravelExtended\Mixins\StrMixin;
 
 final class LaravelExtendedServiceProvider extends AggregateServiceProvider
@@ -21,8 +23,14 @@ final class LaravelExtendedServiceProvider extends AggregateServiceProvider
     {
         AboutCommand::add('Laravel Extended', fn () => ['Version' => '1.0.0']);
 
-        Builder::mixin(new BuilderMixin());
-        Str::mixin(new StrMixin());
+        if (config(sprintf('extended.%s', Builder::class), false)) {
+            Builder::mixin(new BuilderMixin());
+        }
+
+        if (config(sprintf('extended.%s', Str::class), false)) {
+            Str::mixin(new StrMixin());
+            Stringable::mixin(new StringableMixin());
+        }
 
         if ($this->app->runningInConsole()) {
             $this->publishing();
