@@ -12,30 +12,20 @@ trait BoundaryConstraints
 {
     private const GREATER = '>';
 
-    private const GREATER_OR_EQUAL = '>=';
+    private const GREATER_THAN_OR_EQUAL = '>=';
 
     private const LESS = '<';
 
-    private const LESS_OR_EQUAL = '<=';
+    private const LESS_THAN_OR_EQUAL = '<=';
 
     public function whereGreaterThan(): Closure
     {
         return $this->whereClosure(self::GREATER);
     }
 
-    public function whereGT(): Closure
+    public function whereGreaterThanOrEqual(): Closure
     {
-        return $this->whereGreaterThan();
-    }
-
-    public function whereGreaterThanEqual(): Closure
-    {
-        return $this->whereClosure(self::GREATER_OR_EQUAL);
-    }
-
-    public function whereGTE(): Closure
-    {
-        return $this->whereGreaterThanEqual();
+        return $this->whereClosure(self::GREATER_THAN_OR_EQUAL);
     }
 
     public function whereLessThan(): Closure
@@ -43,19 +33,9 @@ trait BoundaryConstraints
         return $this->whereClosure(self::LESS);
     }
 
-    public function whereLT(): Closure
+    public function whereLessThanOrEqual(): Closure
     {
-        return $this->whereLessThan();
-    }
-
-    public function whereLessThanEqual(): Closure
-    {
-        return $this->whereClosure(self::LESS_OR_EQUAL);
-    }
-
-    public function whereLTE(): Closure
-    {
-        return $this->whereLessThanEqual();
+        return $this->whereClosure(self::LESS_THAN_OR_EQUAL);
     }
 
     private function whereClosure(string $operator): Closure
@@ -70,14 +50,19 @@ trait BoundaryConstraints
         return $this->whereColumnClosure(self::GREATER);
     }
 
-    public function whereColumnGT(): Closure
+    public function whereColumnGreaterThanOrEqual(): Closure
     {
-        return $this->whereColumnGreaterThan();
+        return $this->whereColumnClosure(self::GREATER_THAN_OR_EQUAL);
     }
 
     public function whereColumnLessThan(): Closure
     {
         return $this->whereColumnClosure(self::LESS);
+    }
+
+    public function whereColumnLessThanOrEqual(): Closure
+    {
+        return $this->whereColumnClosure(self::LESS_THAN_OR_EQUAL);
     }
 
     private function whereColumnClosure(string $operator): \Closure
