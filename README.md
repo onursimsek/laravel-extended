@@ -56,7 +56,7 @@ Product::whenWhere(true, 'is_active')->get();
 ```php
 use Illuminate\Support\Str;
 
-Str::squishBetween("I\twill kiss\t\nyou!");
+Str::squishBetween("I\twill kiss\t\nyou!", 'kiss', 'you');
 // I       will kiss you!
 Str::replaceBetween('I will kiss you!', 'will', 'you', 'miss');
 // I will miss you!
@@ -67,7 +67,7 @@ Str::replaceBetweenMatch('I will kiss you!', 'will', 'you', '/k(.*)s/', 'hug');
 ### Extended Illuminate\Support\Stringable
 
 ```php
-use Illuminate\Support\Stringable;
+use Illuminate\Support\Str;
 
 Str::of("I\twill kiss\t\nyou!")->squishBetween('kiss', 'you');
 // I       will kiss you!
