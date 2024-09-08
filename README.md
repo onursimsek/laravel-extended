@@ -69,7 +69,7 @@ Str::replaceBetweenMatch('I will kiss you!', 'will', 'you', '/k(.*)s/', 'hug');
 ```php
 use Illuminate\Support\Stringable;
 
-Str::of("I\twill kiss\t\nyou!")->squishBetween();
+Str::of("I\twill kiss\t\nyou!")->squishBetween('kiss', 'you');
 // I       will kiss you!
 Str::of('I will kiss you!')->replaceBetween('will', 'you', 'miss');
 // I will miss you!
