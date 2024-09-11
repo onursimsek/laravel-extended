@@ -3,7 +3,8 @@
 use Workbench\App\Models\Product;
 
 it('boundary constraints', function ($method, $column, $value, $sql) {
-    expect(Product::query()->{$method}($column, $value)->toRawSql())->toEqual($sql);
+    $actualSql = Product::query()->{$method}($column, $value)->toRawSql();
+    expect(str($actualSql)->replace('`', '"')->toString())->toEqual($sql);
 })->with([
     // Greater
     ['whereGreaterThan', 'price', 500, 'select * from "products" where "price" > 500'],
@@ -18,7 +19,8 @@ it('boundary constraints', function ($method, $column, $value, $sql) {
 ]);
 
 it('conditional constraints', function ($value, $column, $sql) {
-    expect(Product::query()->whenWhere($value, $column)->toRawSql())->toEqual($sql);
+    $actualSql = Product::query()->whenWhere($value, $column)->toRawSql();
+    expect(str($actualSql)->replace('`', '"')->toString())->toEqual($sql);
 })->with([
     [true, 'is_active', 'select * from "products" where "is_active" = 1'],
     [false, 'is_active', 'select * from "products"'],
