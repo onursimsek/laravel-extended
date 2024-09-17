@@ -11,37 +11,38 @@ trait InteractsWithDatabase
     public function beginTransaction(string ...$connections): void
     {
         $this->connections = $connections ?: [$this->defaultConnection()];
-        foreach ($this->connections as $connection) {
-            DB::connection($connection)->beginTransaction();
-        }
+        $this->execute('beginTransaction', $this->connections);
     }
 
     public function commit(string ...$connections): void
     {
-        foreach ($connections ?: [$this->defaultConnection()] as $connection) {
-            DB::connection($connection)->commit();
-        }
+        $this->execute('commit', $connections);
     }
 
     public function commitAll(): void
     {
-        $this->commit(...$this->connections);
+        $this->execute('commit', $this->connections);
     }
 
     public function rollBack(string ...$connections): void
     {
-        foreach ($connections ?: [$this->defaultConnection()] as $connection) {
-            DB::connection($connection)->rollBack();
-        }
+        $this->execute('rollBack', $connections);
     }
 
     public function rollBackAll(): void
     {
-        $this->rollBack(...$this->connections);
+        $this->execute('rollBack', $this->connections);
     }
 
     private function defaultConnection()
     {
         return config('database.default');
+    }
+
+    private function execute(string $method, array $connections): void
+    {
+        foreach ($connections ?: [$this->defaultConnection()] as $connection) {
+            DB::connection($connection)->$method();
+        }
     }
 }

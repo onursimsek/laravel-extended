@@ -20,6 +20,20 @@ You can install the package via composer:
 composer require onursimsek/laravel-extended
 ```
 
+## Contents
+
+- [Illuminate\Database\Query\Builder](#extended-illuminatedatabasequerybuilder)
+- [Illuminate\Support\Str](#extended-illuminatesupportstr)
+- [Illuminate\Support\Stringable](#extended-illuminatesupportstringable)
+- [Useful Traits](#useful-traits)
+  - [InteractsWithDatabase](#interactswithdatabase)
+    - [beginTransaction](#begintransactionstring-connections-void)
+    - [commit](#commitstring-connections-void)
+    - [commitAll](#commitall-void)
+    - [rollBack](#rollbackstring-connections-void)
+    - [rollBack](#rollbackall-void)
+    - [Example](#interactswithdatabase-example)
+
 ## Usage
 
 ### Extended Illuminate\Database\Query\Builder
@@ -75,6 +89,81 @@ Str::of('I will kiss you!')->replaceBetween('will', 'you', 'miss');
 // I will miss you!
 Str::of('I will kiss you!')->replaceBetweenMatch('will', 'you', '/k(.*)s/', 'hug');
 // I will hug you!
+```
+
+## Useful Traits
+
+### InteractsWithDatabase
+
+This trait provides an easy way to manage database transactions across multiple connections. It allows you to **begin**,
+**commit**, and **roll back** transactions.
+
+#### beginTransaction(string ...$connections): void
+
+This method starts a transaction on the specified database connections. If no connections are provided, the default
+database connection specified in your Laravel configuration will be used.
+
+```php
+$this->beginTransaction(); // Starts transaction on default connection
+$this->beginTransaction('mysql', 'sqlite'); // Starts transactions on the 'mysql' and 'sqlite' connections
+```
+
+#### commit(string ...$connections): void
+
+This method commits a transaction on the specified connections. If no connections are specified, nothing will happen.
+
+```php
+$this->commit(); // No action taken (no specific connection provided)
+$this->commit('mysql', 'sqlite'); // Commits the transactions on the 'mysql' and 'sqlite' connections
+```
+
+#### commitAll(): void
+This method commits transactions on all connections that have begun a transaction during the lifetime of the object.
+
+```php
+$this->commitAll(); // Commits all active transactions
+```
+
+#### rollBack(string ...$connections): void
+This method rolls back a transaction on the specified connections.
+
+```php
+$this->rollBack(); // Rolls back on the default connection
+$this->rollBack('mysql', 'sqlite'); // Rolls back on the 'mysql' and 'sqlite' connections
+```
+
+#### rollBackAll(): void
+This method rolls back transactions on all connections that have begun a transaction during the lifetime of the object.
+
+```php
+$this->rollBackAll(); // Rolls back all active transactions
+```
+
+#### InteractsWithDatabase Example
+
+```php
+namespace App\Http\Controllers\Controller;
+
+use OnurSimsek\LaravelExtended\Support\InteractsWithDatabase;
+
+class Controller
+{
+    use InteractsWithDatabase;
+    
+    public function store()
+    {
+        $this->beginTransaction('mysql', 'pgsql');
+
+        try {
+            // Your data processing logic
+
+            $this->commitAll(); // Commit the transactions if everything goes well
+        } catch (\Exception $e) {
+            $this->rollBackAll(); // Roll back if an error occurs
+            throw $e;
+        }
+    }
+}
 ```
 
 ## Testing
