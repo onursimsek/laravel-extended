@@ -33,6 +33,10 @@ composer require onursimsek/laravel-extended
     - [rollBack](#rollbackstring-connections-void)
     - [rollBack](#rollbackall-void)
     - [Example](#interactswithdatabase-example)
+  - [HasName](#hasname)
+    - [names](#names)
+  - [HasValue](#hasvalue)
+    - [value](#values-and-names)
 
 ## Usage
 
@@ -164,6 +168,43 @@ class Controller
         }
     }
 }
+```
+
+### HasName
+
+This trait converts the **names** of _UnitEnum_ into an array.
+
+#### names()
+
+```php
+enum Status 
+{
+    use HasName;
+
+    case Active;
+    case Inactive;
+}
+
+Status::names(); // ['Active', 'Inactive']
+```
+
+### HasValue
+
+#### values() and names()
+
+This trait converts the **names** and **values** of _BackedEnum_ into an array
+
+```php
+enum Status: string
+{
+    use HasValue;
+
+    case Active = 'active';
+    case Inactive = 'inactive';
+}
+
+Status::names();  // ['Active', 'Inactive']
+Status::values(); // ['active', 'inactive']
 ```
 
 ## Testing
