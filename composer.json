@@ -61,6 +61,7 @@
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest --parallel",
         "test-coverage": "vendor/bin/pest --coverage",
+        "test-coverage-text": "vendor/bin/pest --coverage-text",
         "format": "vendor/bin/pint",
         "serve": [
             "Composer\\Config::disableProcessTimeout",
