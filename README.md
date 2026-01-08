@@ -37,6 +37,7 @@ composer require onursimsek/laravel-extended
     - [names](#names)
   - [HasValue](#hasvalue)
     - [value](#values-and-names)
+  - [GetAttributes](#getattributes)
 
 ## Usage
 
@@ -205,6 +206,34 @@ enum Status: string
 
 Status::names();  // ['Active', 'Inactive']
 Status::values(); // ['active', 'inactive']
+```
+
+### GetAttributes
+
+```php
+use App\Enums\Concerns\Name;
+use App\Enums\Concerns\Symbol;
+use OnurSimsek\LaravelExtended\Support\Enums\GetAttributes;
+
+enum Currency
+{
+    use GetAttributes;
+
+    #[Name('Turkish Lira')]
+    #[Symbol('₺')]
+    case TRY;
+
+    #[Name('US Dollar')]
+    #[Symbol('$')]
+    case USD;
+
+    #[Name('Euro')]
+    #[Symbol('€')]
+    case EUR:
+}
+
+Currency::EUR->name();      // Euro
+Currency::TRY->symbol();    // ₺
 ```
 
 ## Testing
