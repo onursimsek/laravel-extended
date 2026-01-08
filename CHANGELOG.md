@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-extended` will be documented in this file.
 
+## v1.3.0 - 2026-01-08
+
+### What's Changed
+
+* Enum attributes can use as a function by @onursimsek in https://github.com/onursimsek/laravel-extended/pull/16
+
+**Full Changelog**: https://github.com/onursimsek/laravel-extended/compare/1.2.1...1.3.0
+
 ## v1.2.1 - 2024-09-19
 
 ### What's Changed
