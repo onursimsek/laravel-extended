@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://banners.beyondco.de/Laravel%20Extended.png?theme=dark&packageManager=composer+require&packageName=onursimsek%2Flaravel-extended&pattern=topography&style=style_1&description=Extend+your+Laravel+project+with+mixins+and+mores&md=1&showWatermark=0&fontSize=100px&images=arrows-expand">
   <source media="(prefers-color-scheme: light)" srcset="https://banners.beyondco.de/Laravel%20Extended.png?theme=light&packageManager=composer+require&packageName=onursimsek%2Flaravel-extended&pattern=topography&style=style_1&description=Extend+your+Laravel+project+with+mixins+and+mores&md=1&showWatermark=0&fontSize=100px&images=arrows-expand">
-  <img alt="Package Image" src="https://banners.beyondco.de/Precondition.png?theme=dark&packageManager=composer+require&packageName=onursimsek%2Fprecondition&pattern=topography&style=style_2&description=HTTP+Precondition+for+Laravel&md=1&showWatermark=1&fontSize=125px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg">
+  <img alt="Package Image" src="https://banners.beyondco.de/Laravel%20Extended.png?theme=dark&packageManager=composer+require&packageName=onursimsek%2Flaravel-extended&pattern=topography&style=style_1&description=Extend+your+Laravel+project+with+mixins+and+mores&md=1&showWatermark=0&fontSize=100px&images=arrows-expand">
 </picture>
 
 # Extend your Laravel project with mixins and mores
